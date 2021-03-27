@@ -1,0 +1,34 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/plantilla :: head">
+</head>
+<body>
+<nav th:replace="layout/navbar :: navbar"></nav>
+
+<div class="container my-4">
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h1 class="text-secondary">Gestionar Profesores</h1>
+                    <p>
+                        Ver listado, crear, modificar y eliminar profesores
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-primary " th:href="@{/admin/gestionar/profesores/}">Ir</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-sm-12">
+            <div class="card ">
+                <div class="card-body">
+                    <h1 class="text-secondary">Gestionar Materias</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

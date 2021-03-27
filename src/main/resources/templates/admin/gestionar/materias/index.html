@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/plantilla :: head">
+</head>
+<body>
+    <div class="card shadow border-0">
+        <div class="card-body">
+            <a th:href="@{/}" class="btn btn-primary">Regresar</a>
+
+            <h1 class="text-center display-1">Gestionar Materias</h1>
+
+            <div class="form-row my-4">
+                <div class="col-4">
+                    <input type="text" class="form-control" oninput="prueba(this.value)" placeholder="Buscar">
+                </div>
+            </div>
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr><th>Materias</th>
+                    <th>Borrar</th>
+                </tr></thead>
+                <tbody>
+                <tr>
+                    <td>matematicas</td>
+                    <td><button class="btn btn-danger">Borrar</button></td>
+                </tr>
+                <tr>
+                    <td>lengua</td>
+                    <td><button class="btn btn-danger">Borrar</button></td>
+                </tr>
+                <tr>
+                    <td>mate</td>
+                    <td><button class="btn btn-danger">Borrar</button></td>
+                </tr></tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" language="JavaScript">
+        function prueba(texto){
+            let materiaDiv = document.querySelector('tbody');
+            materiaDiv.innerHTML = '';
+                $.ajax({
+                    url: 'http://localhost:8080/api/test',
+                    data: {"texto": texto},
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function(response){
+                        response.map(res => materiaDiv.innerHTML += `
+                        <tr>
+                            <td>${res.nombre}</td>
+                            <td><button class="btn btn-danger">Borrar</button></td>
+                        </tr>`)
+                    }
+                });
+        }
+        prueba("");
+    </script>
+</body>
+</html>

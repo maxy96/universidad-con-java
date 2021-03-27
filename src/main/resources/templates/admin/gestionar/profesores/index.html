@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://thymeleaf.org">
+<head th:replace="layout/plantilla :: head">
+</head>
+<body>
+    <nav th:replace="layout/navbar :: navbar"></nav>
+
+    <div class="container my-4">
+        <div class="card border-0 shadow">
+            <div class="card-body">
+
+                <h1 class="text-secondary text-center display-1">Listado de Profesores</h1>
+                <div class="row my-2">
+                    <div class="col-4">
+                        <a class="btn btn-primary" th:href="@{/admin/gestionar/profesores/agregar}">Agregar</a>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>DNI</th>
+                            <th>Activo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" >
+    let tbody = document.querySelector('tbody');
+
+
+
+    const drawRow = function(teacher){
+        return `
+        <tr>
+            <td>${teacher.name + " " + teacher.lastname }</td>
+            <td>${teacher.dni}</td>
+            <td class="${teacher.active ? 'text-success' : 'text-danger'}">
+                ${teacher.active ? 'ACTIVO' : 'INACTIVO'}
+            </td>
+        </tr>
+        `
+    }
+
+    $.ajax({
+        url: "/api/profesores",
+        dataType: 'json',
+        type: 'GET',
+        success: function(response){
+            response.map(data => tbody.innerHTML += drawRow(data))
+        }
+    })
+</script>
+</html>

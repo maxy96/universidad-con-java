@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/plantilla :: head">
+</head>
+<body>
+    <nav th:replace="layout/navbar :: navbar"></nav>
+
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card border-0 shadow">
+                    <h1 class="text-secondary text-center display-1 ">Agregar Profesor</h1>
+                    <div class="dropdown-divider"></div>
+                    <div class="card-body">
+                        <form th:action="@{/admin/gestionar/profesores/guardar}" method="post" class="px-4" th:object="${teacher}">
+                            <input type="hidden" name="idPersona" th:field="*{idTeacher}" />
+
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <input th:field="*{name}" id="name" type="text" class="form-control" name="name" placeholder="Ingresar nombre"/>
+                                </div>
+                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error nombre</span>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <input th:field="*{lastname}" id="lastname" type="text" class="form-control" name="lastname" placeholder="Ingresar apellido"/>
+                                </div>
+                                <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Error apellido</span>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <input th:field="*{dni}" id="dni" type="text" class="form-control" name="dni" placeholder="Ingresar dni"/>
+                                </div>
+                                <span th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">Error dni</span>
+                            </div>
+
+                            <div class="form-group mb-0 row justify-content-center">
+                                <div class="col-md-6 ">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        Guardar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
